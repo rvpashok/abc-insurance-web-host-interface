@@ -3,7 +3,7 @@
 	"version": 1,
 	"newProjectRoot": "projects",
 	"projects": {
-		"poc-shell": {
+		"abc-insurance-web-host-interface": {
 			"projectType": "application",
 			"schematics": {
 				"@schematics/angular:component": {
@@ -17,7 +17,7 @@
 				"build": {
 					"builder": "ngx-build-plus:browser",
 					"options": {
-						"outputPath": "dist/poc-shell",
+						"outputPath": "dist/abc-insurance-web-host-interface",
 						"index": "src/index.html",
 						"polyfills": [
 							"zone.js"
@@ -32,7 +32,8 @@
 							}
 						],
 						"styles": [
-							"src/styles.scss"
+							"src/styles.scss",
+							"node_modules/primeflex/primeflex.css"
 						],
 						"scripts": [],
 						"main": "src/main.ts",
@@ -68,11 +69,11 @@
 					"builder": "ngx-build-plus:dev-server",
 					"configurations": {
 						"production": {
-							"buildTarget": "poc-shell:build:production",
+							"buildTarget": "abc-insurance-web-host-interface:build:production",
 							"extraWebpackConfig": "webpack.prod.config.js"
 						},
 						"development": {
-							"buildTarget": "poc-shell:build:development"
+							"buildTarget": "abc-insurance-web-host-interface:build:development"
 						}
 					},
 					"defaultConfiguration": "development",
