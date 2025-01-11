@@ -6,21 +6,34 @@ import { CareersComponent } from './footer-bar/careers/careers.component';
 import { ContactUsComponent } from './footer-bar/contact-us/contact-us.component';
 import { PressReleaseComponent } from './footer-bar/press-release/press-release.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { ClaimsComponent } from './claims/claims.component';
 
 export const routes: Routes = [
-    {path:'about-us',component:AboutusComponent, canActivate: [AuthGuard]},
-    {path:'contact-us',component:ContactUsComponent},
-    {path:'careers',component:CareersComponent},
-    {path:'press-release',component:PressReleaseComponent},
-    {path:'profile',component:ProfileComponent},
     {
-        path:"claim",
+        path:'profile',
+        component:ProfileComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path:'claims',
+        component:ClaimsComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path:'notifications',
+        component:NotificationsComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path:"premium",
         loadChildren: ()=> 
         loadRemoteModule({
             type: 'module',
             remoteEntry: 'http://localhost:4202/remoteEntry.js',
             exposedModule: './PaymentModule'
-        }).then(m => m.ClaimsModule)
+        }).then(m => m.PayPremiumModule),
+        canActivate: [AuthGuard]
     },
     {
         path:"insurance",
@@ -29,6 +42,23 @@ export const routes: Routes = [
             type: 'module',
             remoteEntry: 'http://localhost:4201/remoteEntry.js',
             exposedModule: './InsuranceModule'
-        }).then(m => m.InsuranceDetailsModule)
+        }).then(m => m.InsuranceDetailsModule),
+        canActivate: [AuthGuard]
+    },
+    {
+        path:'about-us',
+        component:AboutusComponent
+    },
+    {
+        path:'contact-us',
+        component:ContactUsComponent
+    },
+    {
+        path:'careers',
+        component:CareersComponent
+    },
+    {
+        path:'press-release',
+        component:PressReleaseComponent
     }
 ];

@@ -18,6 +18,7 @@ import { MegaMenuModule } from 'primeng/megamenu';
 import { AvatarModule } from 'primeng/avatar';
 import { AuthService } from '@auth0/auth0-angular';
 import { ToolbarModule } from 'primeng/toolbar';
+import { PolicyType } from '../model/common-models';
 
 
 
@@ -66,30 +67,40 @@ export class HeaderBarComponent /*implements AfterViewInit*/{
                 root: true,
                 items: [
                     [
-                        {
-                            items: [
-                                { 
-                                  label: 'Health Insurance',
-                                  command: () => {
-                                    this.insurancePlan();
-                                  }
-                                },
-                                { 
-                                  label: 'Auto Insurance',
-                                  command: () => {
-                                    this.insurancePlan();
-                                  }
+                      {
+                        items: [
+                            { 
+                              label: 'Health Insurance',
+                              icon: 'pi pi-signout',
+                              command: () => {
+                                this.insurancePlan(PolicyType.Health);
+                              }
+                            },
+                            { 
+                              label: 'Auto Insurance',
+                              icon: 'pi pi-signout',
+                              command: () => {
+                                this.insurancePlan(PolicyType.Auto);
+                              }
 
-                                },
-                                { 
-                                  label: 'Life Insurance' ,
-                                  command: () => {
-                                    this.insurancePlan();
-                                  }
+                            },
+                            { 
+                              label: 'Life Insurance' ,
+                              icon: 'pi pi-signout',
+                              command: () => {
+                                this.insurancePlan(PolicyType.Life);
+                              }
 
-                                }
-                            ]
-                        }
+                            },
+                            { 
+                              label: 'Term Insurance' ,
+                              icon: 'pi pi-signout',
+                              command: () => {
+                                this.insurancePlan(PolicyType.Term);
+                              }
+                            }
+                        ]
+                      }
                     ]
                 ]
             },
@@ -99,6 +110,13 @@ export class HeaderBarComponent /*implements AfterViewInit*/{
                 command: () => {
                     this.claims();
                 }
+            },
+            {
+              label: 'Premium',
+              root: true,
+              command: () => {
+                  this.payPremium();
+              }
             },
             {
                 label: 'Login',
@@ -117,6 +135,15 @@ export class HeaderBarComponent /*implements AfterViewInit*/{
                 command: () => {
                     this.profile();
                 }
+            },
+            {
+              label: 'Notifications',
+              root: true,
+              icon: 'fa fa-solid fa-user',
+              visible: this.isAuthenticated ? this.isAuthenticated : false,
+              command: () => {
+                  this.notifications();
+              }
             },
             {
                 label: 'Logout',
@@ -138,9 +165,11 @@ export class HeaderBarComponent /*implements AfterViewInit*/{
             this.auth.user$.subscribe(userDetails=>{
               console.log("UserID: " + userDetails?.sub);
               this.commonService.setItem("profileId",userDetails?.sub);
-              this.items?this.items[2].visible = false:"";
-              this.items?this.items[3].visible = true:"";
-              this.items?this.items[4].visible = true:"";
+              // Show Profile / Logout / Notifications after success login
+              this.items?this.items[3].visible = false: "";
+              this.items?this.items[4].visible = true: "";
+              this.items?this.items[5].visible = true: "";
+              this.items?this.items[6].visible = true: "";
               this.items?.push(this.items);
             });
             this.auth.isAuthenticated$.subscribe((status) => {
@@ -152,35 +181,36 @@ export class HeaderBarComponent /*implements AfterViewInit*/{
         });
     }
 
-
-  save(severity: string) {
-      console.log("Login button Save" + { severity: severity, summary: 'Success', detail: 'Data Saved' });
-  } 
-
-  insurancePlan(){
+  insurancePlan(type: PolicyType){
     console.log("Insurance Plan Clicked");
-    this.router.navigate(['/insurance'])
+    this.router.navigate(['/insurance/details'], {'queryParams':{'type':type}});
   }
+
   profile(){
-   console.log("Profile button Clicker" + this.auth.isAuthenticated$);
+   console.log("Profile button Clicked" + this.auth.isAuthenticated$);
    //this.commonService.resetHeaderToDefault();
    this.router.navigate(['/profile'])
   }
 
   claims(){
-    console.log("Claim button Clicker ");
+    console.log("Claim button Clicked ");
     this.router.navigate(['/claims'])
+  }
+
+  payPremium(){
+    console.log("Premium button Clicked ");
+    this.router.navigate(['/premium/pay'])
   }
 
   login(){
     //console.log("Login button Clicker " + this.auth.isAuthenticated$);
-    console.log("Login button Clicker ");
+    console.log("Login button Clicked ");
     this.auth.loginWithRedirect();
     this.auth.getAccessTokenSilently();
   }
 
   logout() {  
-    console.log("Logout button Clicker ");
+    console.log("Logout button Clicked ");
    // console.log("Logout button Clicker" + this.doc.location.origin);
     this.commonService.setItem("accessToken","");
     this.commonService.setItem("profileId","");
@@ -189,13 +219,9 @@ export class HeaderBarComponent /*implements AfterViewInit*/{
   
 
   notifications(){
-    console.log("Notification button Clicker")
+    console.log("Notification button Clicked")
     //this.commonService.resetHeaderToDefault();
     this.router.navigate(['/notifications'])
-  }
-
-  onEnter(event: Event){
-    console.log("Enter pressed selected: ");
   }
 
   onClickHomeIcon(){

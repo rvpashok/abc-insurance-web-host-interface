@@ -2,7 +2,7 @@
     <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
 </div>
 
-<div *ngIf="isPageLoading==false" fxLayout="row" fxLayoutGap="16px" style="margin-top: 70px;">
+<!-- <div *ngIf="isPageLoading==false" fxLayout="row" fxLayoutGap="16px" style="margin-top: 70px;">
     <div fxFlex="100%" *ngIf="this.userDetails != null">
         <div class="column-content">
             <div class="card">
@@ -31,4 +31,55 @@
             
         </div>
     </div>
+</div> -->
+
+<div style="width: 90%; margin-left: 8%;margin-top: 3%;">
+    <div class="grid" style="margin-top:1rem">
+        <div class="col-12 sm:col-12 lg:col-12">
+            <p-card header="Profile Summary">
+                <div class="grid">
+                    <div class="col-5 sm:col-6 lg:col-4 text-left">
+                        <div *ngIf="this.userDetails != null && this.userDetails.profilePicUrl != undefined" class="m-2 text-center py-5 px-3 profilePic">
+                            <div class="mb-3">
+                                <img src="{{this.userDetails.profilePicUrl}}" alt="Profile Pic Image comes here !!!" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5 sm:col-1 lg:col-1">
+                        <p-divider layout="vertical" />    
+                    </div>
+                    
+                    <div style="margin-top: 6%;">
+                        <div class="col-5 sm:col-12 lg:col-12">
+                            <div class="grid">
+                                <div class="col-12 sm:col-6 lg:col-5 text-left">
+                                    <label for="user-name">Name </label>
+                                </div>
+                                <div class="col-12 sm:col-6 lg:col-7">
+                                    <input pInputText id="user-name" [disabled]="true" [(ngModel)]="userDetails.name" /> 
+                                </div>
+                            </div>
+                            <div class="grid">
+                                <div class="col-12 sm:col-6 lg:col-5  text-left">
+                                    <label for="user-identifier">Identifier </label>
+                                </div>
+                                <div class="col-12 sm:col-6 lg:col-7">
+                                    <input pInputText id="user-identifier" [disabled]="true" [(ngModel)]="userDetails.id" />
+                                </div>
+                            </div>
+                            <div class="grid">
+                                <div class="col-12 sm:col-6 lg:col-5 text-left">
+                                    <label for="user-email">Email </label>
+                                </div>
+                                <div class="col-12 sm:col-6 lg:col-7">
+                                    <input pInputText id="user-email" [disabled]="true" [(ngModel)]="userDetails.email" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+    </div>
 </div>
+

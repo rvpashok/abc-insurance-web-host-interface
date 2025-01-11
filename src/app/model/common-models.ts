@@ -6,3 +6,10 @@ export interface UserProfileResponse {
     'phone_number' : string;
     'profilePicUrl' : string;
   }
+
+  export enum PolicyType {
+    Health = "1",
+    Auto = "2",
+    Life = "3",
+    Term = "4"
+  }
