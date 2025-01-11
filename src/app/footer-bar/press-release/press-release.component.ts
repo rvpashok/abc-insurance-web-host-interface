@@ -6,7 +6,7 @@ import { CardModule } from 'primeng/card';
   standalone: true,
   imports: [CardModule],
   templateUrl: './press-release.component.html',
-  styleUrl: './press-release.component.css'
+  styleUrl: './press-release.component.scss'
 })
 export class PressReleaseComponent {
 

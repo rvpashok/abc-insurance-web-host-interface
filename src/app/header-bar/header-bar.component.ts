@@ -42,7 +42,7 @@ interface Category {
     InputGroupModule,InputGroupAddonModule, BadgeModule, OverlayPanelModule,
     MegaMenuModule, AvatarModule],
   templateUrl: './header-bar.component.html',
-  styleUrl: './header-bar.component.css'
+  styleUrl: './header-bar.component.scss'
 })
 export class HeaderBarComponent /*implements AfterViewInit*/{
   values = '';
@@ -199,7 +199,7 @@ export class HeaderBarComponent /*implements AfterViewInit*/{
 
   payPremium(){
     console.log("Premium button Clicked ");
-    this.router.navigate(['/premium/pay'])
+    this.router.navigate(['/premium/pay'], {'queryParams':{'type':1}});
   }
 
   login(){

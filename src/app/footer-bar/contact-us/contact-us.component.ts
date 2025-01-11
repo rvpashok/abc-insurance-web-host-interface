@@ -6,7 +6,7 @@ import { CardModule } from 'primeng/card';
   standalone: true,
   imports: [CardModule],
   templateUrl: './contact-us.component.html',
-  styleUrl: './contact-us.component.css'
+  styleUrl: './contact-us.component.scss'
 })
 export class ContactUsComponent {
 

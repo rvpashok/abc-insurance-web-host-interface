@@ -11,7 +11,7 @@ import { MenubarModule } from 'primeng/menubar';
   standalone: true,
   imports: [ToolbarModule, CommonModule, MenubarModule],
   templateUrl: './footer-bar.component.html',
-  styleUrl: './footer-bar.component.css'
+  styleUrl: './footer-bar.component.scss'
 })
 export class FooterBarComponent {
 
