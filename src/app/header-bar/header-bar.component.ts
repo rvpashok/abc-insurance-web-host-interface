@@ -205,6 +205,7 @@ export class HeaderBarComponent /*implements AfterViewInit*/{
 
   login(){
     //console.log("Login button Clicker " + this.auth.isAuthenticated$);
+    
     console.log("Login button Clicked ");
     this.auth.loginWithRedirect();
     this.auth.getAccessTokenSilently();

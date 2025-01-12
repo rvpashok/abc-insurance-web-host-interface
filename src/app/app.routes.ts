@@ -9,6 +9,11 @@ import { ProfileComponent } from './profile/profile.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { ClaimsComponent } from './claims/claims.component';
 import { HomeComponent } from './home/home.component';
+import { environment } from '../environments/environment';
+
+const mfeInsuranceDomain = environment.production ? environment.mfeInsuranceDomain : 'http://localhost:4201';
+const mfePaymentDomain = environment.production ? environment.mfePaymentDomain : 'http://localhost:4201';
+
 
 export const routes: Routes = [
     {
@@ -35,7 +40,7 @@ export const routes: Routes = [
         loadChildren: ()=> 
         loadRemoteModule({
             type: 'module',
-            remoteEntry: 'http://localhost:4202/remoteEntry.js',
+            remoteEntry: mfePaymentDomain + '/remoteEntry.js',
             exposedModule: './PaymentModule'
         }).then(m => m.PayPremiumModule),
         canActivate: [AuthGuard]
@@ -45,7 +50,7 @@ export const routes: Routes = [
         loadChildren: ()=> 
         loadRemoteModule({
             type: 'module',
-            remoteEntry: 'http://localhost:4201/remoteEntry.js',
+            remoteEntry: mfeInsuranceDomain + '/remoteEntry.js',
             exposedModule: './InsuranceModule'
         }).then(m => m.InsuranceDetailsModule),
         canActivate: [AuthGuard]
