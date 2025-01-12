@@ -1,0 +1,21 @@
+// Variables for reusable values
+$profile-pic-size: 250px;
+$profile-border-radius: 50%;
+$margin-bottom: 20px;
+
+.profilePic {
+  img {
+    display: inline-block;
+    width: $profile-pic-size;
+    height: $profile-pic-size;
+    border-radius: $profile-border-radius;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+}
+
+.profileFields {
+  margin-bottom: $margin-bottom;
+}

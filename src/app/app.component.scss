@@ -1,21 +1,26 @@
-.header-bar-content{
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 100;
+// Variables for common styles
+$fixed-position: fixed;
+$full-width: 100%;
+$z-index-level: 100;
+$padding-percentage: 3%;
+
+.header-bar-content {
+  position: $fixed-position;
+  top: 0;
+  width: $full-width;
+  z-index: $z-index-level;
 }
 
-.body-content{
-    text-align: center;
-    height: 100%;
-    /* margin-top: 10%; */
-    padding-top: 3%;
-    padding-bottom: 3%;
+.body-content {
+  text-align: center;
+  height: $full-width; // 100% height
+  padding-top: $padding-percentage;
+  padding-bottom: $padding-percentage;
 }
 
-.bottom-bar-content{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 100;
+.bottom-bar-content {
+  position: $fixed-position;
+  bottom: 0;
+  width: $full-width;
+  z-index: $z-index-level;
 }

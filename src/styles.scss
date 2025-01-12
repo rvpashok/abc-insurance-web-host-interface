@@ -1,32 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// Global styles
+$font-family: Roboto, "Helvetica Neue", sans-serif;
+$html-body-height: 100%;
+$coming-soon-width: 20%;
+$coming-soon-margin-top: 10%;
 
+// Media query breakpoints
+$breakpoint-md: 600px;
+$breakpoint-lg: 1200px;
 
+html, body {
+  height: $html-body-height;
+}
 
-  @media screen and (min-width: 600px) {
-    html body .p-megamenu .p-megamenu-end{
-        /* margin-left: 3% !important; */
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-        width: 80%;
-      }
+body {
+  margin: 0;
+  font-family: $font-family;
+}
+
+// Megamenu styling with media queries
+.p-megamenu {
+  &.p-megamenu-end {
+    @media screen and (min-width: $breakpoint-md) {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      width: 80%;
+    }
+
+    @media screen and (min-width: $breakpoint-lg) {
+      margin-left: auto;
+      margin-right: 20px;
+      display: block;
+      width: 60%;
+    }
   }
+}
 
-  @media screen and (min-width: 1200px) {
-    html body .p-megamenu .p-megamenu-end{
-        /* margin-left: 3% !important; */
-        margin-left: auto;
-        margin-right: 20px;
-        display: block;
-        width: 60%;
-      }
-  }
-
-  
+// Coming soon page styling
 .coming-soon-page {
-  width: 20%; 
-  margin: auto; 
-  margin-top: 10%;
+  width: $coming-soon-width;
+  margin: auto;
+  margin-top: $coming-soon-margin-top;
 }
