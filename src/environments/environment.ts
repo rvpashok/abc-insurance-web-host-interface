@@ -1,8 +1,8 @@
-// src/environments/environment.ts
+// src/environments/environment.prod.ts
 export const environment = {
-    production: false,
-    mfeInsuranceDomain: 'http://localhost:4201',  // Local domain for development
-    mfePaymentDomain: 'http://localhost:4202',
-    webHostDomain: 'http://localhost:4200',
+    production: true,
+    mfeInsuranceDomain: 'https://abc-insurance-mfe1.netlify.app',  // Production domain
+    mfePaymentDomain: 'https://abc-insurance-mfe2.netlify.app',
+    webHostDomain: 'https://abc-insurance.netlify.app',
   };
   
