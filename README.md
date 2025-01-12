@@ -7,7 +7,7 @@ Install Node.JS from [](https://nodejs.org/en/download) version >22.0 and NPM ve
 Check Node.JS version and NPM Version using `node -v` and `npm -v`  
 Install Angular >19.0 using `npm install -g @angular/cli`  
 Check Angular version using `ng --version`  
-Open code editor and redirect to project folder `abc-insurance-web-mf-payment`   
+Open code editor and redirect to project folder `abc-insurance-web-host-interface`   
 Install required dependency modules using `npm install`   
 
 
