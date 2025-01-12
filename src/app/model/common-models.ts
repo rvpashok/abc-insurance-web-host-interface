@@ -13,3 +13,9 @@ export interface UserProfileResponse {
     Life = "3",
     Term = "4"
   }
+
+  export interface AnalyticsData{
+      "totalActiveClaims": number,
+      "totalProcessedClaims": number,
+      "totalAmountPaid": number
+  }

@@ -8,8 +8,13 @@ import { PressReleaseComponent } from './footer-bar/press-release/press-release.
 import { ProfileComponent } from './profile/profile.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { ClaimsComponent } from './claims/claims.component';
+import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
+    {
+        path:'',
+        component:HomeComponent
+    },
     {
         path:'profile',
         component:ProfileComponent,

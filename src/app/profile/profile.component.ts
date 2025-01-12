@@ -52,11 +52,4 @@ export class ProfileComponent {
     }
   }
 
-  
-ngOnInit(): void {
-  // this.loadingService.isLoading().subscribe(loading => {
-  //   this.isPageLoading = loading;
-  // });
-}
-
 }
