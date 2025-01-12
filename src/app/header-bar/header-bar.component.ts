@@ -19,6 +19,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { AuthService } from '@auth0/auth0-angular';
 import { ToolbarModule } from 'primeng/toolbar';
 import { PolicyType } from '../model/common-models';
+import { SharedService } from 'shared';
 
 
 
@@ -51,7 +52,7 @@ export class HeaderBarComponent /*implements AfterViewInit*/{
     private router : Router,
     @Inject(DOCUMENT) private doc: Document,
     public commonService:CommonService,
-    public auth: AuthService) {
+    public auth: AuthService, private sharedService: SharedService) {
       console.log("AuthModule config Clicked");
   }
   
@@ -157,14 +158,14 @@ export class HeaderBarComponent /*implements AfterViewInit*/{
         ];
 
         this.auth.getAccessTokenSilently().subscribe((accessToken)=>{
-          console.log("Existing acessToken: " + this.commonService.getItem("accessToken"));
+          console.log("Existing acessToken: " + this.sharedService.getItem("accessToken"));
           console.log("request value acessToken: " + accessToken);
           if(accessToken != null && accessToken != undefined){
-            this.commonService.setItem("accessToken",accessToken);
+            this.sharedService.setItem("accessToken",accessToken);
            // console.log("New acessToken: " + this.commonService.getItem("accessToken"));
             this.auth.user$.subscribe(userDetails=>{
               console.log("UserID: " + userDetails?.sub);
-              this.commonService.setItem("profileId",userDetails?.sub);
+              this.sharedService.setItem("profileId",userDetails?.sub);
               // Show Profile / Logout / Notifications after success login
               this.items?this.items[3].visible = false: "";
               this.items?this.items[4].visible = true: "";
@@ -212,8 +213,8 @@ export class HeaderBarComponent /*implements AfterViewInit*/{
   logout() {  
     console.log("Logout button Clicked ");
    // console.log("Logout button Clicker" + this.doc.location.origin);
-    this.commonService.setItem("accessToken","");
-    this.commonService.setItem("profileId","");
+    this.sharedService.setItem("accessToken","");
+    this.sharedService.setItem("profileId","");
     this.auth.logout({ logoutParams: { returnTo: this.doc.location.origin } });
   }
   

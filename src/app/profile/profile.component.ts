@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { AuthService } from '@auth0/auth0-angular';
+import { SharedService } from 'shared';
 
 
 
@@ -25,13 +26,16 @@ export class ProfileComponent {
   isPageLoading = false;
 
   constructor(private router : Router,
-    private activatedRoute: ActivatedRoute,public commonService:CommonService,public auth: AuthService) {
+    private activatedRoute: ActivatedRoute,
+    public commonService:CommonService,
+    public auth: AuthService,
+    private sharedService: SharedService) {
       this.router.routeReuseStrategy.shouldReuseRoute = function () {
         return false;
     }; 
    // this.router.onSameUrlNavigation = 'reload';
-    var profileId = this.commonService.getItem("profileId");
-    var accessToken = this.commonService.getItem("accessToken");
+    var profileId = this.sharedService.getItem("profileId");
+    var accessToken = this.sharedService.getItem("accessToken");
     
       if(profileId){
         this.auth.user$.subscribe(user=> {
